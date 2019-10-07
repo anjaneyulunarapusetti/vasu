@@ -42,7 +42,7 @@ pipeline {
             steps {
                 input 'Deploy to Production?'
                 milestone(1)
-                withCredentials([usernamePassword(credentialsId: 'deploy1', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'deploy', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
                     script {
                         sh "sshpass -p '$USERPASS' -v ssh -o StrictHostKeyChecking=no $USERNAME@$prod_ip \"docker pull dockerpandian/hansika:${env.BUILD_NUMBER}\""
                         try {
